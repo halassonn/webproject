@@ -1,0 +1,18 @@
+
+
+<div [@alert]="stateName" [className]="statusName" role="alert">
+    <div *ngIf="alert.status==='Success'">
+        <strong>{{alert.status}}</strong>&nbsp;{{alert.message}}
+     
+    </div>
+    <div *ngIf="alert.status==='Error'">
+        <strong>{{alert.status}}</strong>&nbsp;{{alert.message}}
+        <p><a href="javascript:void(0)" (click)="klickAktivate()" *ngIf="alert.dialog">here</a></p>
+    </div>
+    </div>
+
+  
+
+  <!--<div [@alert]="stateName" class="alert alert-success" role="alert"  *ngIf="status ==='Success'">
+    <strong>{{alert.status}}</strong>&nbsp;{{alert.message}}
+  </div>-->

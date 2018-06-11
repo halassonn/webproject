@@ -1,0 +1,69 @@
+.naik {
+  width: 95%;
+  height: 100%;
+  position: fixed;
+  animation: mymoveup 0.5s ease-out forwards; //animation-iteration-count:3;
+  /* Safari and Chrome */
+  -webkit-animation:mymoveup 0.5s;
+  //-webkit-animation-iteration-count:3;
+
+}
+
+.turun {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  animation: mymovedown 1s ease-out forwards; //animation-iteration-count:3;
+  /* Safari and Chrome */
+  //-webkit-animation:mymove 3s;
+  //-webkit-animation-iteration-count:3;
+}
+
+@keyframes mymoveup {
+  from {
+    top: 100%;
+    opacity: 0;
+  }
+  to {
+    top: 75px !important;
+    opacity: 1
+  }
+}
+
+@-webkit-keyframes mymoveup{
+/* Safari and Chrome */
+
+from {
+    top: 100%;
+    opacity: 0;
+  }
+  to {
+    top: 75px !important;
+    opacity: 1
+  }
+}
+
+@keyframes mymovedown {
+    from {
+      top: -100%;
+      opacity: 0;
+    }
+    to {
+      top: 75px;
+      opacity: 1
+    }
+  }
+  
+  @-webkit-keyframes mymovedown{
+  /* Safari and Chrome */
+  
+  from {
+      top: -100%;
+      opacity: 0;
+    }
+    to {
+      top: 75px;
+      opacity: 1
+    }
+  }
+  

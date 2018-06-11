@@ -1,0 +1,96 @@
+<div class="kotak-modal mt-1" *ngIf="!showmodal">
+
+    <nav class="navbar bg-dark" style="height: 45px; padding: 0.5rem 0.2rem">
+    <h4>Configuration</h4>
+    <div class="pull-right">
+        <button id="closemodal" class="btn btn-sm btn-outline-danger ">
+            <i class="fa fa-close"></i>
+          </button>
+    </div>
+  </nav>
+  <div class="kotak">
+    <button id="btnPerusahaan" class="shadow" (click)="showmodal=!showmodal">Data Perusahaan</button>
+    <button id="btnPerusahaan" class="shadow" (click)="showmodal=!showmodal">Data Perusahaan</button>
+    <button id="btnPerusahaan" class="shadow" (click)="showmodal=!showmodal">Data Perusahaan</button>
+    <button id="btnPerusahaan" class="shadow" (click)="showmodal=!showmodal">Data Perusahaan</button>
+    <button id="btnPerusahaan" class="shadow" (click)="showmodal=!showmodal">Data Perusahaan</button>
+    <button id="btnPerusahaan" class="shadow" (click)="showmodal=!showmodal">Data Perusahaan</button>
+    <button id="btnPerusahaan" class="shadow" (click)="showmodal=!showmodal">Data Perusahaan</button>
+  </div>
+
+
+
+</div>
+
+
+<div [@fadeInAnimation]="" id="dataperusahaan" *ngIf="showmodal" class="kotak-modal">
+
+  
+      <nav class="navbar bg-dark" style="height: 45px; padding: 0.5rem 0.2rem">
+          <h4>Data Perusahaan</h4>
+              <div class="pull-right">
+                  <button id="closemodal" class="btn btn-sm btn-outline-danger " (click)="showmodal=!showmodal">
+                      <i class="fa fa-close"></i>
+                    </button>
+              </div>
+        </nav>
+
+      <div class="kotak-modal-content ">
+          <div class="kotak" style="justify-content: center;">
+              <div class="box">
+                <div class="form-group">
+                  <label for="namaperusahaan">Nama Perusahaan</label>
+                  <input type="text" class="form-control form-control-sm shadow" id="namaperusahaan" aria-describedby="namaperusahaan" placeholder="Nama Perusahaan"
+                    [(ngModel)]="dataPerusahaanModel.namaperusahaan">
+                  <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+                </div>
+                <div class="form-group">
+                  <label for="alamatPerusahaan">Alamat Perusahan</label>
+                  <textarea type="text" class="form-control form-control-sm shadow" id="alamatPerusahaan" aria-describedby="alamatperusahaan"
+                    placeholder="Alamat Perusahaan" [(ngModel)]="dataPerusahaanModel.alamatperusahaan" rows="4"></textarea>
+                  <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+                </div>
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="email" class="form-control form-control-sm shadow" id="email" aria-describedby="emailHelp" placeholder="Email"
+                    [(ngModel)]="dataPerusahaanModel.email">
+                  <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+                </div>
+                <div class="form-group">
+                  <label for="notelp">No Telepon / HP</label>
+                  <input type="text" class="form-control form-control-sm shadow" id="notelp" placeholder="No Telepon / Hp" [(ngModel)]="dataPerusahaanModel.notelp">
+                </div>
+        
+        
+              </div>
+              <div class="box" >
+                <div class="form-group">
+                  <label for="kodepos">Kode Pos</label>
+                  <input type="number" class="form-control form-control-sm shadow" id="kodepos" placeholder="KodePos" [(ngModel)]="dataPerusahaanModel.kodepos">
+                </div>
+                <div class="form-group">
+                  <label for="logo">Logo Perusahaan</label>
+                  <input type="file" class="form-control-file form-control-sm shadow" id="logo" aria-describedby="logo" placeholder="Logo Perushaan"
+                  (change)="changeFile($event)">
+                  <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+                </div>
+
+                <div class="form-group">
+                    <img class="img-responsive"  src="{{dataPerusahaanModel.logo}}" alt="Logo Perusahaan" style="width: 200px;"/>
+                </div>
+        
+              </div>
+
+            </div>
+      </div>
+      <nav class="navbar bg-dark" style="height: 45px; padding: 0.5rem 0.2rem">
+          <div class="ml-auto">
+              <button type="button" class="btn btn-sm btn-outline-success" (click)="save()" title="Simpan">
+                <i class="fa fa-fw fa-save"></i>
+              </button>
+            </div>
+      </nav>
+
+
+
+</div>

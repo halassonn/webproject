@@ -1,0 +1,168 @@
+<div [@fadeInAnimation]="" class="kotak-modal" *ngIf="!list">
+  <nav class="navbar bg-dark" style="height: 45px; padding: 0.5rem 0.2rem">
+    <h3>Page Config</h3>
+    <button type="button" class="btn btn-sm btn-outline-danger ml-auto" title="Tutup">
+      <i class="fa fa-fw fa-close"></i>
+    </button>
+  </nav>
+  <div class="kotak-modal-header">
+    <form class=" mr-1">
+      <div class="input-group input-group-sm">
+        <input type="text" *ngIf="cari" class="form-control form-control-sm" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1"
+          (keyup)="cariPage($event)" [(ngModel)]="caridata" name="caridata">
+        <button class="btn btn-outline-info btn-sm" (click)="cari = !cari" title="Cari">
+          <i class="fa fa-fw fa-search"></i>
+        </button>
+        <button class="btn btn-outline-info btn-sm ml-1" type="submit" title="Refresh" (click)="listmenu = datalama ; caridata=''; getAllMenu();">
+          <i class="fa fa-fw fa-refresh"></i>
+        </button>
+        <button class="btn btn-outline-info btn-sm ml-1" type="submit" title="Tambah" (click)="list = !list; clearModel(); ">
+          <i class="fa fa-fw fa-plus"></i>
+        </button>
+      </div>
+    </form>
+  </div>
+  <div class="kotak" style="justify-content: center; padding: 0px;">
+     
+   
+    <div class="list-group list-group-sm " id="parentzero">
+   
+      <div id="collapseOne" >
+          <ul class="list-group" *ngFor="let l of listmenu | groupBy: 'parentmenu' ">
+            <div *ngIf="l.key ===''">
+
+              
+                <a href="javascript:void(0)" class="list-item" *ngFor="let w of l.value;  let i = index" (click)="showListAction(w._id,w.page[0])">
+                   
+                    <li class="list-group-item" >
+                        <span class="pull-right" style="display: none" id="{{w._id | trim}}"  >
+                            <button class="btn btn-outline-danger btn-sm" (click)="hapusHalaman()" title="Hapus">
+                              <i class="fa fa-fw fa-trash"></i>
+                            </button>
+                            <button class="btn btn-outline-info btn-sm" (click)="details();" title="Details">
+                              <i class="fa fa-fw fa-pencil"></i>
+                            </button>
+                          </span> 
+                        <h5>{{w.namamenu}} </h5>              
+                      </li>
+                  </a>
+                
+            </div>
+
+            <div class="panel-group" id="accordion" *ngIf="l.key !==''">
+                <div class="panel panel-default">
+                 <a data-toggle="collapse" data-parent="#accordion" href="#{{l.key | trim}}" class="list-group">
+                    <li class="list-group-item">
+                        <h5>{{l.key}} </h5>  
+                      </li>
+                  </a>
+                 
+
+                  <div id="{{l.key | trim}}" class="panel-collapse collapse">
+                      <ul class="list-group" *ngFor="let xx of l.value; let i = index;">
+
+                          <a href="javascript:void(0)"  (click)="showListAction(xx._id,xx.page[0])">
+                             
+                            <li class="list-group-item">
+                                <span class="pull-right" style="display: none" [id]=xx._id >
+                                    <button class="btn btn-outline-danger btn-sm" (click)="hapusHalaman()" title="Hapus">
+                                      <i class="fa fa-fw fa-trash"></i>
+                                    </button>
+                                    <button class="btn btn-outline-info btn-sm" (click)="details();" title="Details">
+                                      <i class="fa fa-fw fa-pencil"></i>
+                                    </button>
+                                  </span> 
+                                {{xx.namamenu}}
+                              </li>
+                           </a>
+                       
+        
+                      </ul>
+                    </div>
+                </div>
+              
+              </div>
+            
+          </ul>
+        </div> 
+
+      <div class="btn-group btn-group-sm" *ngFor="let l of listmenu | groupBy: 'parentmenu'  let i = index">
+      </div>
+    </div>
+  </div>
+</div>
+<div [@fadeInAnimation]="" id="dataperusahaan" class="kotak-modal" *ngIf="list">
+  <nav class="navbar  bg-dark" style="height: 45px;padding: 0.5rem 0.2rem">
+    <h3>Page Config</h3>
+    <button type="button" class="btn btn-sm btn-outline-danger ml-auto" title="Tutup" (click)=" getAllPage();list = !list; ">
+      <i class="fa fa-fw fa-close"></i>
+    </button>
+  </nav>
+
+  <div class="kotak-modal-content ">
+    <div class="kotak" style="justify-content: center;">
+      <div class="box" style="width: 21% ;">
+        <div class="form-group">
+          <div class="form-check form-check-inline">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="optradio" (change)="chooseoptionmenu()" id="mainmenu" checked>main menu
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="optradio" (change)="chooseoptionmenu()" id="submenu">sub menu </label>
+          </div>
+        </div>
+        <div class="form-group" *ngIf="mainmenu === true">
+          <label for="parentmenu">Parent Menu</label>
+          <select class="form-control" id="parentmenu" (change)="selectparentmenu($event)" [(ngModel)]="parent" *ngIf="!addparent">
+            <option value="0">---new parent menu---</option>
+            <option *ngFor="let p of parentlist" value="{{p}}">{{p}}</option>
+          </select>
+          <div class="input-group " *ngIf="addparent">
+            <input type="text" id="newparent" class="form-control" placeholder="Parent Menu" [(ngModel)]="parent" (keyup)="newparent($event)">
+            <div class="input-group-prepend">
+              <span class="input-group-button" id="basic-addon2">
+                <button class="btn btn-outline-danger" (click)="addparent =!addparent">
+                  <i class="fa fa-close"></i>
+                </button>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="namamenu">Nama Menu</label>
+          <input type="text" class="form-control" [ngModel]="halamanmodel.namamenu | capitalize" (ngModelChange)="halamanmodel.namamenu=$event"
+            id="namamenu" (keyup)="onchangemenu($event)">
+        </div>
+        <div class="form-group">
+          <label for="namahalaman">Nama Halaman</label>
+          <input type="text" class="form-control" [(ngModel)]="halamanmodel.namahalaman" id="namahalaman">
+        </div>
+        <div class="form-group">
+          <label for="url">Url</label>
+          
+          <input type="text" class="form-control" id="url" readonly [(ngModel)]="halamanmodel.urlmenu">
+        </div>
+      </div>
+      <div class="box" style="width: 70% ;">
+        <text-editor [value]="postbody" [elementId]="'ideditor'" (onEditorKeyup)="onBodyTextEditorKeyUp($event)" style="height: 100%;"></text-editor>
+      </div>
+    </div>
+  </div>
+  <nav class="navbar  bg-dark " style="height: 45px;padding: 0.5rem 0.2rem">
+
+    <div class="ml-auto">
+      <button type="button" class="btn btn-sm btn-outline-success" *ngIf="!tambah" (click)="save()" title="Simpan">
+        <i class="fa fa-fw fa-save"></i>
+      </button>
+      <button type="button" class="btn btn-sm btn-outline-success" *ngIf="tambah" (click)="update()" title="Update">
+        <i class="fa fa-fw fa-save"></i>
+      </button>
+      <button type="button" class="btn btn-sm btn-outline-info" (click)=" getAllPage(); list=!list;" title="List">
+        <i class="fa fa-fw fa-list"></i>
+      </button>
+    </div>
+
+  </nav>
+</div>

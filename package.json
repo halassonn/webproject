@@ -1,0 +1,19 @@
+{
+  "name": "electron-mean",
+  "version": "1.0.0",
+  "description": "Electron with express, angular , mongoodb ",
+  "main": "main.js",
+  "scripts": {
+    "start": ".\\node.exe start-electron.js"
+  },
+  "dependencies": {
+    "electron": "^1.8.4",
+    "jquery": "^3.3.1",
+    "lodash": "^4.17.4",
+    "keymaster": "^1.6.2",
+    "request": "^2.83.0",
+    "strip": "^3.0.0"
+  },
+  "author": "halasson gultom",
+  "license": "MIT"
+}

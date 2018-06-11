@@ -1,0 +1,15 @@
+<div [className]="overlay_class ">
+    <div class="loader-content" *ngIf="overlay_class !=='dialog'">       
+        <div id="loading-text">
+            {{textstatus}}
+          </div>
+    </div>
+    <div class="loader-content" *ngIf="overlay_class ==='dialog'">
+             
+            <div id="loading-text">
+                {{textstatus}}
+              </div>
+              <button class="btn btn-sm" id="yesDelete" >Ya</button> 
+              <button class="btn btn-sm" (click)="closeDialog()">Tidak</button> 
+        </div>
+</div>

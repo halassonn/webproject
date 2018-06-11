@@ -1,0 +1,30 @@
+@media screen and (max-width: 992px) {
+  .kotak-modal{
+    left: 0 !important;
+  }
+  .push-right {
+    .sidebar {
+      left: 235px !important;
+    }
+  }
+  .kotak > button {
+    width: inherit !important;
+  }
+}
+
+@media screen and (max-width:540px) {
+  .kotak-modal{
+    left: 0 !important;
+  }
+  .kotak > button {
+    width: inherit !important;
+  }
+  .kotak-modal-content{
+    .kotak{
+      .box{
+        width: 100% !important;
+      }
+    }
+   
+  }
+}

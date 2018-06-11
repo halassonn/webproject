@@ -1,0 +1,257 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "bootstrap/bootstrap";
+@import "spinner";
+@import "utils";
+@import "rtl";
+@import "responsive";
+@import "shadow";
+@import "animate";
+@mixin background($imgpath,$position:0 0,$repeat: no-repeat) {
+  background: {
+      image: url($imgpath);
+      position: $position;
+      repeat: $repeat;
+  }
+}
+$topnav-background-color: #222;
+$lighblue-background-border:rgba($color: #1bbef0, $alpha: 0.5);
+body,
+html {
+  background-color: #000;
+  color: whitesmoke; // -moz-box-shadow: inset 0 0 5px #1ebcfa;
+  @include background('../assets/images/hole-sky.png');
+}
+
+
+
+.kotak {
+  width: 100%; //height: 100%;
+  display: -webkit-flex;
+  /* Safari */
+  -webkit-flex-wrap: wrap;
+  /* Safari 6.1+ */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: stretch;
+  padding-top: 10px;
+}
+
+.kotak>* {
+  margin: 0px 5px 10px 5px;
+  width: 100%;
+}
+
+.kotak>button {
+  position: relative;
+  background: rgba($color: red, $alpha: 0.2);
+  border: none;
+  font-size: 24px;
+  color: rgba($color: whitesmoke, $alpha: 0.8);
+  border-radius: 5px;
+  padding: 20px;
+  width: 200px;
+  height: 150px;
+  text-align: center;
+  -webkit-transition-duration: 0.4s;
+  /* Safari */
+  transition-duration: 0.4s;
+  text-decoration: none;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.kotak>button:hover {
+  -moz-box-shadow: inset 0 0 5px #1ebcfa;
+  -webkit-box-shadow: inset 0 0 5px #1ebcfa;
+  box-shadow: inset 0 0 5px rgba($color: #1bbef0, $alpha: 0.1);
+  border: solid 0.5px rgba($color: #1bbef0, $alpha: 0.5);
+  border-radius: 5px;
+  font-size: 25px;
+}
+
+.kotak>button:after {
+  content: "";
+  background: rgba($color: #1bbef0, $alpha: 0.5);
+  display: block;
+  position: absolute;
+  padding-top: 300%;
+  padding-left: 350%;
+  margin-left: -20px !important;
+  margin-top: -50%;
+  opacity: 0;
+  transition: all 0.8s
+}
+
+.kotak>button:active:after {
+  padding: 0;
+  margin: 0;
+  opacity: 1;
+  transition: 0s
+}
+
+.kotak-modal {
+ /* position: relative;
+  margin: 5px;
+  background: rgba($color: #1bbef0, $alpha: 0.8);
+  border: solid 1px rgba($color: #07090a, $alpha: 0.8);
+  overflow-y: auto; */
+  position: fixed;
+  margin: 5px;
+  background: rgba(27, 190, 240, 0.8);
+  border: solid 1px rgba(7, 9, 10, 0.8);
+  overflow-y: auto;
+  /* margin: 0 auto; */
+  left: 235px;
+  right: 0;
+  bottom: 0;
+  top: 56px;
+  .kotak-modal-header {
+    background: rgba($color: #07090a, $alpha: 0.8);
+    display: flex;
+    width: 100%;
+    min-height: 50px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center; // border-bottom: 1px solid darken(rgba($color: #fdfdfd, $alpha: 1), 5%);
+    h6 {
+      padding-top: 5px;
+      padding-left: 15px;
+      font-weight: bolder;
+    }
+    .button-modal-close {
+      right: 0px;
+      height: 30px;
+      position: absolute;
+      background: rgba($color: #1bbef0, $alpha: 0.1);
+      border: none;
+      font-size: 14px;
+      color: rgba($color: #f10909, $alpha: 0.8);
+      border-radius: 5px; // padding: 20px;
+      text-align: center;
+      -webkit-transition-duration: 0.4s;
+      /* Safari */
+      transition-duration: 0.4s;
+      text-decoration: none;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .button-modal-close:hover {
+      background: rgba($color: #f02929, $alpha: 1);
+      color: rgba($color: #ffffff, $alpha: 0.8);
+      border-radius: 0.3px;
+    }
+    .button-modal-close:after {
+      content: "";
+      background: rgba($color: #fafdfd, $alpha: 0.5);
+      display: block;
+      position: absolute;
+      padding-top: 300%;
+      padding-left: 350%;
+      margin-left: -20px !important;
+      margin-top: -120%;
+      opacity: 0;
+      transition: all 0.8s
+    }
+    .button-modal-close:active:after {
+      padding: 0;
+      margin: 0;
+      opacity: 1;
+      transition: 0s
+    }
+  }
+  .kotak-modal-content {
+    height: 100%;
+    width: 100%;
+    overflow-y: auto;
+    padding: 0px 5px;
+    z-index: 1100;
+    .kotak {
+      .box {
+        width: 48%;
+      }
+    }
+  }
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: whitesmoke;
+  font-weight: bolder;
+  font-size: 12px;
+}
+
+.dropdown-menu {
+  z-index: 9999 !important;
+}
+
+.dropdown-item {
+  font-size: 10px !important;
+  color: whitesmoke;
+}
+
+.dropdown-item:hover {
+  color: whitesmoke !important;
+  background-color: rgba(27, 190, 240, 0.5) !important;
+}
+
+.dropdown-menu-right {
+  -moz-box-shadow: inset 0 0 5px #1ebcfa;
+  -webkit-box-shadow: inset 0 0 5px #1ebcfa;
+  box-shadow: outset 0 0 5px rgba($color: #1bbef0, $alpha: 0.1);
+  background-color: darken($topnav-background-color, 3%) !important;
+  font-size: 13px !important;
+}
+
+.navbar-brand {
+  font-size: 18px;
+  font-weight: bolder;
+  color: #f02929 !important;
+  font-style: italic;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.dropdown-divider {
+  border-top: 1px solid $lighblue-background-border !important; //background-color: $lighblue-background-border !important;
+}
+
+.media {
+  border-bottom: 1px solid $lighblue-background-border !important;
+}
+
+.modal {
+  top: 50px !important;
+  color: #041e35;
+}
+
+.page-content {
+  background-color: whitesmoke;
+  top: 215px;
+  height: 100%;
+  padding-top: 20px;
+  padding-left: 25px;
+  padding-right: 30px;
+  padding-bottom: 35px;
+  line-height: 1.5rem;
+  font-size: 1.2em;
+  color: black;
+  min-height: 350px;
+}
+
+
+#sidebarcomp::-webkit-scrollbar-track,html::-webkit-scrollbar-track
+{
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+#sidebarcomp::-webkit-scrollbar, html::-webkit-scrollbar
+{
+  width: 10px;
+  background-color: #F5F5F5;
+}
+
+#sidebarcomp::-webkit-scrollbar-thumb,html::-webkit-scrollbar-thumb
+{
+  background-color: #000000;
+  border: 2px solid #555555;
+}
+

@@ -1,0 +1,47 @@
+<div class="kotak-modal" *ngIf="!addPost">
+    <nav class="navbar bg-dark" style="height: 45px; padding: 0.5rem 0.2rem">
+        <h3>Daftar Posting</h3>
+            <div class="pull-right">
+              <button class="btn btn-sm btn-outline-info" (click)="addPost = !addPost" title="Add Post"><i class="fa fa-plus"></i></button>
+            </div>
+      </nav>
+</div>
+
+<div class="kotak-modal" *ngIf="addPost">
+    <nav class="navbar bg-dark" style="height: 45px; padding: 0.5rem 0.2rem">
+    <h3>Post</h3>
+        <div class="pull-right">
+          <button class="btn btn-sm btn-outline-danger" (click)="addPost = !addPost" title="Tutup"><i class="fa fa-fw fa-close"></i></button>
+        </div>
+  </nav>
+  <div class="kotak-modal-content">
+    <div class="mt-1 mb-1">
+        <select class="form-control form-control-sm mb-2" id="kategory"  style="width: 50%;" 
+        placeholder="Kategori" [(ngModel)]="kategory" (change)="_onSelectKategory($event)" *ngIf="!addkategory">
+            <option value="-1" disabled>Kategory</option>
+            <option value="0">New Kategory</option>
+            <option value="Lappet">Lappet</option>
+          </select>
+          <div class="input-group mb-2 " *ngIf="addkategory">
+            <input type="text" id="newkategory" class="form-control" placeholder="Kategory" [(ngModel)]="kategory" (keyup)="_newKategory($event)">
+          <div class="input-group-prepend">
+            <span class="input-group-button" id="basic-addon2"><button class="btn " (click)="addkategory =!addkategory"><i class="fa fa-close"></i></button> </span>
+          </div>
+         </div>
+      
+        <input type="text" placeholder="Judul Post" class="form-control form-control-sm mb-2" [(ngModel)]="post.title">
+         
+        <text-editor [value]="postbody" [elementId]="'ideditor'"
+        (onEditorKeyup)="_onBodyTextEditorKeyUp()"  ></text-editor>
+    </div>
+     
+  </div>
+  <nav class="navbar bg-dark" style="height: 45px; padding: 0.5rem 0.2rem">
+      <div class="pull-right ml-auto">
+          <button class="btn btn-sm btn-outline-success" (click)="_onSavePost()" title="Simpan"><i class="fa fa-save"></i></button>
+          <button class="btn btn-sm btn-outline-info" (click)="addPost = !addPost" title="List"><i class="fa fa-fw fa-list"></i></button>
+        </div>
+  </nav>
+
+   
+</div>

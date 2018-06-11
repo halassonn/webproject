@@ -1,0 +1,35 @@
+{
+  "name": "dioriganda",
+  "version": "1.0.0",
+  "description": "Website PT Bpr Diori Ganda",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "dependencies": {
+    "async": "^2.6.1",
+    "bcryptjs": "*",
+    "body-parser": "*",
+    "cors": "*",
+    "dotenv": "^6.0.0",
+    "express": "*",
+    "express-promise-router": "^3.0.2",
+    "joi": "^13.3.0",
+    "jsonwebtoken": "*",
+    "mongoose": "*",
+    "morgan": "^1.9.0",
+    "nodemailer": "^4.6.5",
+    "passport": "*",
+    "passport-facebook-token": "^3.3.0",
+    "passport-google-plus-token": "^2.1.0",
+    "passport-jwt": "*",
+    "passport-local": "^1.0.0",
+    "request": "^2.87.0",
+    "socket.io": "^2.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "1.17.4"
+  },
+  "author": "Halasson Gultom",
+  "license": "MIT"
+}

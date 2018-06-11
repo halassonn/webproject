@@ -1,0 +1,177 @@
+<app-alertlogin></app-alertlogin>
+<div class="login-container shadow3 " id="accordion">
+  
+  <div [@panel]="stateNamePanel" class="pane-login shadow2" *ngIf="routeParam ==='daftar'">
+    <div class="pane">
+      <h4>SIGN UP</h4>
+    </div>
+    <div class="panel " style="padding-top: 20px !important;">
+
+      <div class="form-group">
+        <label for="emaildaftar">Email address</label>
+        <input type="email" class="form-control form-control-sm shadow" id="emaildaftar" aria-describedby="emailHelp" placeholder="Enter email"
+          [(ngModel)]="daftar.email">
+      </div>
+
+      <div class="form-group">
+        <label for="daftarpassword">Password</label>
+        <input type="password" class="form-control form-control-sm shadow" id="daftarpassword" placeholder="Password" [(ngModel)]="daftar.password">
+      </div>
+      <div class="form-group">
+        <label for="retypedaftarpassword">Password</label>
+        <input type="password" class="form-control form-control-sm shadow" id="retypedaftarpassword" placeholder="Retype Password"
+          [(ngModel)]="daftar.retypepassword">
+      </div>
+      <div class="form-group">
+          <div class="pull-right" id="re-captcha">
+              <re-captcha (resolved)="resolved($event)" siteKey="6LdX8F0UAAAAAOHhnx8stIDJfwMTGO4egBD2j-1Z" theme = "dark"></re-captcha>
+            </div>
+         
+      </div>
+      <button type="button" class="btn btn-sm btn-outline-info shadow" [disabled]="daftarpassword !== retypedaftarpassword" (click)="doDaftar()">SIGN UP</button>
+    </div>
+  </div>
+
+  <!--Login-->
+  <div [@panel]="stateNamePanel" class="pane-login shadow2" *ngIf=" routeParam === 'login' ">
+    <div class="pane">
+      <h4>LOGIN</h4>
+    </div>
+    <div class="panel " style="padding-top: 20px !important;">
+      <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input type="email" class="form-control form-control-sm shadow" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"
+          [(ngModel)]="login.email">
+
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input type="password" class="form-control form-control-sm shadow" id="exampleInputPassword1" placeholder="Password" [(ngModel)]="login.password">
+      </div>
+      <div class="form-group">
+        <div class="pull-right" id="re-captcha">
+            <re-captcha (resolved)="resolved($event)" siteKey="6LdX8F0UAAAAAOHhnx8stIDJfwMTGO4egBD2j-1Z" theme = "dark"></re-captcha>
+        </div>
+         
+      </div>
+     
+      <button type="button" class="btn btn-sm btn-outline-info shadow" (click)="doLogin()">Login</button>
+
+      <span class="mt-3 shadow  ml-auto" style="font-style: italic; font-weight: bold">
+        <a data-toggle="collapse" data-parent="#accordion" href="#resetPassword" (click)="forgotPassword()">Lupa Password ?</a>
+      </span>
+    </div>
+  </div>
+
+  <!-- request reset-->
+  <div [@panel]="stateNamePanel" class="pane-login shadow2" id="resetKesetPassword" *ngIf="routeParam ==='request reset'">
+      <div class="pane">
+        <h4>Reset Password</h4>
+      </div>
+      <div class="panel " style="padding-top: 20px !important;">
+        <div class="form-group">
+          <label for="emailReset">Email address</label>
+          <input type="email" class="form-control form-control-sm shadow" id="emailReset" aria-describedby="emailHelp" placeholder="Enter email"
+            [(ngModel)]="emailReset">
+        </div>
+        <div class="form-group">
+            <div class="pull-right">
+                <re-captcha (resolved)="resolved($event)" siteKey="6LdX8F0UAAAAAOHhnx8stIDJfwMTGO4egBD2j-1Z" theme = "dark"></re-captcha>
+            </div>
+             
+          </div>
+      </div>
+  
+      <nav class="navbar">
+        <div class="ml-auto">
+          <button class="btn btn-sm btn-outline-primary" (click)="getResetKode()">Kirim</button>
+          <button class="btn btn-sm btn-outline-danger" (click)=" showerror = showerror ? !showerror : showerror; batalkodereset() ">Batal</button>
+        </div>
+  
+      </nav>
+    </div>
+
+    <!-- aktivasi -->
+    <div [@panel]="stateNamePanel" class="pane-login shadow2" *ngIf="routeParam ==='aktivasi'">
+        <div class="pane">
+          <h4>Activate</h4>
+        </div>
+        <div class="panel " style="padding-top: 20px !important;">
+    
+          <div class="form-group">
+            <label for="aktivatekode">Kode Aktivasi</label>
+            <input type="text" class="form-control form-control-sm shadow" id="aktivatekode" placeholder="Activate Code" [(ngModel)]="activatecode">
+          
+          </div>
+          <div class="form-group">
+              <div class="pull-right">
+                  <re-captcha (resolved)="resolved($event)" siteKey="6LdX8F0UAAAAAOHhnx8stIDJfwMTGO4egBD2j-1Z" theme = "dark"></re-captcha>
+              </div>
+               
+            </div>
+    
+          <nav class="navbar">
+    
+            <span class="mt-3 shadow  " style="font-style: italic; font-weight: bold">
+              <a data-toggle="collapse" data-parent="#accordion" href="#resetPassword" (click)="onResendKodeAktivasi()">Kirim lagi Kode Aktivasi</a>
+            </span>
+    
+            <div class="ml-auto">
+              <button class="btn btn-sm btn-outline-success" (click)="onActivated()">OK</button>
+              <button class="btn btn-sm btn-outline-danger" (click)="onBatalactivate()">Batal</button>
+            </div>
+    
+          </nav>
+        </div>
+      </div>
+
+      <!--reset-->
+      <div [@panel]="stateNamePanel" class="pane-login shadow2" id="resetPassword" *ngIf="routeParam ==='reset'">
+          <div class="pane">
+            <h4>Reset Password</h4>
+          </div>
+          <div class="panel " style="padding-top: 20px !important;">
+            <div class="form-group">
+              <label for="resetpassword1">Kode Reset</label>
+              <input type="text" class="form-control form-control-sm shadow" id="kodeReset" placeholder="Kode Reset" [(ngModel)]="kodeReset">
+      
+            </div>
+            <div class="form-group">
+              <label for="passwordReset">Password</label>
+              <input type="password" class="form-control form-control-sm shadow" id="passwordReset" placeholder="Password" [(ngModel)]="passwordReset">
+            </div>
+            <div class="form-group">
+              <label for="retypePasswordReset">Retype Password</label>
+              <input type="password" class="form-control form-control-sm shadow" id="retypePasswordReset" placeholder="Retype Password"
+                [(ngModel)]="retypePasswordReset">
+            </div>
+            <div class="form-group">
+                <div class="pull-right">
+                    <re-captcha (resolved)="resolved($event)" siteKey="6LdX8F0UAAAAAOHhnx8stIDJfwMTGO4egBD2j-1Z" theme = "dark"></re-captcha>
+                </div>
+                 
+              </div>
+          </div>
+          <nav class="navbar">
+      
+            <span class="mt-3 shadow  " style="font-style: italic; font-weight: bold">
+              <a data-toggle="collapse" data-parent="#accordion" href="#resetPassword" (click)="resendKode()">Resend Code</a>
+            </span>
+      
+            <div class="ml-auto">
+              <button class="btn btn-sm btn-outline-success" (click)="onResetPassword()">Reset</button>
+              <button class="btn btn-sm btn-outline-danger" (click)="batalreset()">Batal</button>
+            </div>
+      
+          </nav>
+        </div>
+
+</div>
+<div class="loader" *ngIf="showloader">
+    <div class="loaderpanel">
+      <a>
+        <i class=" fa fa-spinner fa-spin fa-2x"></i>
+      </a>
+      <br> {{loaderstatus}}
+    </div>
+  </div>

@@ -1,0 +1,17 @@
+
+.shadow {
+    -moz-box-shadow:    3px 3px 5px 6px #ccc;
+    -webkit-box-shadow: 3px 3px 5px 6px #ccc;
+    box-shadow:         3px 3px 5px 6px #ccc;
+  }
+  .shadow2{
+    color: whitesmoke;
+    -moz-box-shadow: inset 0 0 5px #1ebcfa;
+    -webkit-box-shadow: inset 0 0 5px #1ebcfa;
+    box-shadow: outset 0 0 5px  rgba($color: #1bbef0, $alpha: 0.1);
+  }
+.shadow3{
+    -webkit-box-shadow: 0 8px 6px -6px black;
+    -moz-box-shadow: 0 8px 6px -6px black;
+         box-shadow: 0 8px 6px -6px black;
+}
